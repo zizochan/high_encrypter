@@ -26,7 +26,7 @@ set_file_paths
 check_file_already_exist(@tmp_zip_filepath)
 
 # decrypt from openssl enc
-execute("cd #{@base_dir} && openssl enc -d -aes256 -in #{@openssl_filename} -out #{@tmp_zip_filename} -pass pass:#{@openssl_password}")
+execute("cd #{@base_dir} && openssl enc -d -aes256 -pbkdf2 -in #{@openssl_filename} -out #{@tmp_zip_filename} -pass pass:#{@openssl_password}")
 
 # decrypt from zip
 execute "cd #{@base_dir} && unzip -qeP #{@zip_password} -d #{OUTPUT_DIR_NAME} #{@tmp_zip_filepath}"

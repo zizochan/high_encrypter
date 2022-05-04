@@ -33,7 +33,7 @@ check_file_already_exist(@tmp_zip_filepath, @openssl_filepath)
 execute "cd #{@base_dir} && zip -erq #{@tmp_zip_filename} #{@base_name}/ --password=#{@zip_password}"
 
 # encrypt to openssl enc
-execute "cd #{@base_dir} && openssl enc -e -aes256 -in #{@tmp_zip_filename} -out #{@openssl_filename} -pass pass:#{@openssl_password}"
+execute "cd #{@base_dir} && openssl enc -e -aes256 -pbkdf2 -in #{@tmp_zip_filename} -out #{@openssl_filename} -pass pass:#{@openssl_password}"
 
 # clean
 clean_tmp_zipfile
